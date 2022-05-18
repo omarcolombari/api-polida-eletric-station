@@ -3,6 +3,7 @@ import { AppError, AppErrorHandler } from "../errors";
 
 import authUserService from "../services/sessions/authUser.service";
 import CreateUserService from "../services/users/createUser.service";
+import DeleteUserService from "../services/users/deleteUser.service";
 import ListUsersService from "../services/users/listUsers.service";
 import ShowUserService from "../services/users/showUser.service";
 import UpdateUserService from "../services/users/updateUser.service";
@@ -74,7 +75,7 @@ export default class UserController {
   }
   static async update(req: Request, res: Response) {
     try {
-      const { name, password, contact } = req.body;
+      const { password, contact } = req.body;
       const { user_id } = req.params;
 
       const updateUser = new UpdateUserService();
@@ -94,6 +95,13 @@ export default class UserController {
   }
   static async delete(req: Request, res: Response) {
     try {
+      const { user_id } = req.params;
+
+      const deleteUser = new DeleteUserService();
+
+      const userDeleted = await deleteUser.execute({ user_id });
+
+      return res.status(200).json({ message: "User deleted successfully." });
     } catch (err) {
       if (err instanceof AppError) {
         AppErrorHandler(err, res);

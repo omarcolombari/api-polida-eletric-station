@@ -9,6 +9,7 @@ export const userRoutes = () => {
   routes.get("/", UserController.index);
   routes.get("/:user_id", UserController.show);
   routes.patch("/:user_id", UserController.update);
+  routes.delete("/:user_id", UserController.delete);
 
   return routes;
 };
