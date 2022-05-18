@@ -1,6 +1,6 @@
 import { Express } from "express";
-import exampleRoute from "./example";
+import { serviceRoutes } from "./serviceType/serviceType.routes";
 
 export default (app: Express) => {
-  app.use("/example", exampleRoute());
+  app.use("/services", serviceRoutes());
 };
