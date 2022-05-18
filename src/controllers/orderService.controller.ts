@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import CreateOrderService from "../services/Services_Order/createOrder.service";
-import listOrderService from "../services/Services_Order/listOrders.service";
-import ShowOrderService from "../services/Services_Order/showOrder.service";
-import ShowOrderPerIdService from "../services/Services_Order/showOrderPerUserId.service";
-import UpdateOrderService from "../services/Services_Order/updateOrder.service";
+import CreateOrderService from "../services/OrderServices/createOrder.service";
+import listOrderService from "../services/OrderServices/listOrders.service";
+import ShowOrderService from "../services/OrderServices/showOrder.service";
+import ShowOrderPerIdService from "../services/OrderServices/showOrderPerUserId.service";
+import UpdateOrderService from "../services/OrderServices/updateOrder.service";
 
-export default class ServiceOrderController {
+export default class OrderServiceController {
   static async store(req: Request, res: Response) {
     const { userId, clientId, serviceId } = req.body;
     const createOrder = new CreateOrderService();
