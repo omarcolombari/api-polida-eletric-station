@@ -1,7 +1,7 @@
 import Client from "../../entities/client.entity";
 import { AppDataSource } from "../../data-source";
 import { IClientID } from "../../interfaces/client/client.interface";
-import { DeleteResult } from "typeorm";
+import { DeleteResult, QueryBuilder, QueryRunner } from "typeorm";
 // import AppError from "../../errors";
 
 export default class DeleteClientService {
@@ -15,6 +15,11 @@ export default class DeleteClientService {
       throw new Error("Not found any client with this id");
     }
 
-    return await clientRepository.delete(client);
+    const deleted = clientRepository.query(
+      `DELETE FROM clients WHERE id = $1`,
+      [id]
+    );
+    return deleted;
+    // return await clientRepository.delete(client);
   }
 }

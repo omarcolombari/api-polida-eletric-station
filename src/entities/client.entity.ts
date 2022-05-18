@@ -22,8 +22,6 @@ export default class Client {
 
   @OneToMany(type => Unit, unit => unit.client, {
     eager: true,
-    onUpdate: "CASCADE",
-    onDelete: "CASCADE",
   })
   @JoinColumn()
   units: Unit[];
