@@ -3,6 +3,7 @@ import { AppError, AppErrorHandler } from "../errors";
 
 import authUserService from "../services/sessions/authUser.service";
 import CreateUserService from "../services/users/createUser.service";
+import listUsersService from "../services/users/listUsers.service";
 
 export default class UserController {
   static async store(req: Request, res: Response) {
@@ -43,6 +44,11 @@ export default class UserController {
   }
   static async index(req: Request, res: Response) {
     try {
+      const listUsers = new listUsersService();
+
+      const users = await listUsers.execute();
+
+      return res.status(200).json(users);
     } catch (err) {
       if (err instanceof AppError) {
         AppErrorHandler(err, res);
