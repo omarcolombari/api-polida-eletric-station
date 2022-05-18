@@ -20,7 +20,11 @@ export default class Client {
   @Column()
   contact: string;
 
-  @OneToMany(type => Unit, unit => unit.client)
+  @OneToMany(type => Unit, unit => unit.client, {
+    eager: true,
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE",
+  })
   @JoinColumn()
   units: Unit[];
 

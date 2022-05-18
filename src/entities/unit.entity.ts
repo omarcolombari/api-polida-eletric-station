@@ -31,11 +31,7 @@ export default class Unit {
   @Column("float")
   cable_meter: number;
 
-  @ManyToOne(type => Client, client => client.units, {
-    eager: true,
-    onUpdate: "CASCADE",
-    onDelete: "CASCADE",
-  })
+  @ManyToOne(type => Client, client => client.units, )
   @JoinTable()
   client: Client;
 
