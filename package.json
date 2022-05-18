@@ -1,12 +1,12 @@
 {
   "name": "capstone-m4-node",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.ts",
   "repository": "git@github.com:andersonstpinto/capstone-m4-node.git",
   "author": "drimtim",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/server.ts",
+    "dev": "ts-node-dev --watch --transpile-only --ignore-watch node_modules .",
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {
