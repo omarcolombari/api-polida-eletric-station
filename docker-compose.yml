@@ -1,0 +1,29 @@
+services:
+  api:
+    container_name: capstone
+    image: capstone_drintim
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - DB_USER=atualizar
+      - DB_PASSWORD=atualizar
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB=atualizar
+    depends_on:
+      - db
+  db:
+    container_name: db_capstone
+    image: postgres:12
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=capstone
+    volumes:
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./backend/:/code/src/app
+      - /code/src/app/node_modules
+# onde constar "atualizar, substituir pelos padrões adotados para o projeto"

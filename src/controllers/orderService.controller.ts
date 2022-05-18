@@ -32,8 +32,8 @@ export default class OrderServiceController {
   }
 
   static async showPerUserId(req: Request, res: Response) {
-    const { id } = req.user;
+    /*const { id } = req.user;
     const showOrderPerIdService = new ShowOrderPerIdService();
-    const orders = showOrderPerIdService.execute(id);
+    const orders = showOrderPerIdService.execute(id);*/
   }
 }
