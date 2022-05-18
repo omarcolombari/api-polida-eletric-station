@@ -22,7 +22,7 @@ export default class authUserService {
       throw new AppError("Incorrect e-mail and/or password.", 401);
     }
 
-    const token = sign({ name }, String(process.env.JWT_SECRET) || "default", {
+    const token = sign({ name }, String(process.env.JWT_SECRET), {
       subject: user.id,
       expiresIn: "24h",
     });

@@ -4,6 +4,7 @@ import { AppError, AppErrorHandler } from "../errors";
 import authUserService from "../services/sessions/authUser.service";
 import CreateUserService from "../services/users/createUser.service";
 import listUsersService from "../services/users/listUsers.service";
+import ShowUserService from "../services/users/showUser.service";
 
 export default class UserController {
   static async store(req: Request, res: Response) {
@@ -57,6 +58,13 @@ export default class UserController {
   }
   static async show(req: Request, res: Response) {
     try {
+      const { user_id } = req.params;
+
+      const showUser = new ShowUserService();
+
+      const user = await showUser.execute({ user_id });
+
+      return res.status(200).json(user);
     } catch (err) {
       if (err instanceof AppError) {
         AppErrorHandler(err, res);

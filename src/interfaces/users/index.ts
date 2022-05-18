@@ -21,3 +21,7 @@ export interface IUserAuth {
 export interface IUserToken {
   token: string;
 }
+
+export interface IUserId {
+  user_id: string;
+}
