@@ -4,22 +4,15 @@ import AppError from "../../errors/AppError";
 
 interface IService {
   id: string;
-  userId: string;
-  serviceId: string;
-  clientId: string;
+  userId?: string;
+  serviceId?: string;
+  clientId?: string;
   status: string;
   reschedule?: string;
 }
 
-export default class ServiceOrderService {
-  async execute({
-    clientId,
-    id,
-    serviceId,
-    status,
-    userId,
-    reschedule,
-  }: IService): Promise<ServiceOrder> {
+export default class UpdateOrderService {
+  async execute({ id, status, reschedule }: IService): Promise<ServiceOrder> {
     const serviceOrderRepository = AppDataSource.getRepository(ServiceOrder);
 
     const order = await serviceOrderRepository.findOne({

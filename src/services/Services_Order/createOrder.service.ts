@@ -8,11 +8,11 @@ interface IServiceOrder {
   userId: string;
   serviceId: string;
   clientId: string;
-  status: string;
+  status?: string;
   reschedule?: string;
 }
 
-export default class ServiceOrderService {
+export default class CreateOrderService {
   async execute(data: IServiceOrder): Promise<ServiceOrder> {
     const clientRepository = AppDataSource.getRepository(Client);
     const serviceOrderRepository = AppDataSource.getRepository(ServiceOrder);
