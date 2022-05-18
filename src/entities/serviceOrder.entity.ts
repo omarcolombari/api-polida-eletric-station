@@ -5,11 +5,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  OneToOne,
   JoinColumn,
 } from "typeorm";
-import Client from "./client.entity";
 import ServiceType from "./serviceType.entity";
+import Unit from "./unit.entity";
 import User from "./user.entity";
 
 @Entity("service_order")
@@ -17,25 +16,17 @@ export default class ServiceOrder {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
-  @OneToOne(type => User, {
-    eager: true,
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE",
-  })
+  @ManyToOne(type => User, user => user.service_order)
   @JoinColumn()
   user: User;
 
-  @OneToOne(type => ServiceType, {
-    eager: true,
-    onDelete: "SET NULL",
-    onUpdate: "CASCADE",
-  })
+  @ManyToOne(type => ServiceType, serviceType => serviceType.service_order)
   @JoinColumn()
   service_type: ServiceType;
 
-  @ManyToOne(type => Client, client => client.service_orders)
+  @ManyToOne(type => Unit, unit => unit.service_order)
   @JoinColumn()
-  client: Client;
+  unit: Unit;
 
   @Column()
   status: string;
