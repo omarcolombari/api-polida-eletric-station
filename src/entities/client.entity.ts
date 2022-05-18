@@ -7,7 +7,6 @@ import {
   OneToMany,
   JoinColumn,
 } from "typeorm";
-import ServiceOrder from "./serviceOrder.entity";
 import Unit from "./unit.entity";
 
 @Entity("clients")
@@ -21,17 +20,9 @@ export default class Client {
   @Column()
   contact: string;
 
-  @OneToMany(type => Unit, unit => unit.client, {
-    eager: true,
-  })
+  @OneToMany(type => Unit, unit => unit.client)
   @JoinColumn()
   units: Unit[];
-
-  @OneToMany(type => ServiceOrder, serviceOrder => serviceOrder.client, {
-    eager: true,
-  })
-  @JoinColumn()
-  service_orders: ServiceOrder[];
 
   @CreateDateColumn()
   created_at: Date;
