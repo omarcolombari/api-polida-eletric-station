@@ -8,6 +8,7 @@ export const userRoutes = () => {
   routes.post("/login", UserController.session);
   routes.get("/", UserController.index);
   routes.get("/:user_id", UserController.show);
+  routes.patch("/:user_id", UserController.update);
 
   return routes;
 };

@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import User from "../../entities/user.entity";
 
-export default class listUsersService {
+export default class ListUsersService {
   async execute() {
     const userRepository = AppDataSource.getRepository(User);
 

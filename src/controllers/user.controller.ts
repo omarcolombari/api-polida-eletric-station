@@ -3,8 +3,9 @@ import { AppError, AppErrorHandler } from "../errors";
 
 import authUserService from "../services/sessions/authUser.service";
 import CreateUserService from "../services/users/createUser.service";
-import listUsersService from "../services/users/listUsers.service";
+import ListUsersService from "../services/users/listUsers.service";
 import ShowUserService from "../services/users/showUser.service";
+import UpdateUserService from "../services/users/updateUser.service";
 
 export default class UserController {
   static async store(req: Request, res: Response) {
@@ -45,7 +46,7 @@ export default class UserController {
   }
   static async index(req: Request, res: Response) {
     try {
-      const listUsers = new listUsersService();
+      const listUsers = new ListUsersService();
 
       const users = await listUsers.execute();
 
@@ -73,6 +74,18 @@ export default class UserController {
   }
   static async update(req: Request, res: Response) {
     try {
+      const { name, password, contact } = req.body;
+      const { user_id } = req.params;
+
+      const updateUser = new UpdateUserService();
+
+      const user = await updateUser.execute({
+        user_id,
+        password,
+        contact,
+      });
+
+      return res.status(200).json(user);
     } catch (err) {
       if (err instanceof AppError) {
         AppErrorHandler(err, res);

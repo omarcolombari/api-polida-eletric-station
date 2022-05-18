@@ -13,13 +13,13 @@ export default class authUserService {
     const user = await userRepository.findOne({ where: { name } });
 
     if (!user) {
-      throw new AppError("Incorrect e-mail and/or password.", 401);
+      throw new AppError("Incorrect name and/or password.", 401);
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new AppError("Incorrect e-mail and/or password.", 401);
+      throw new AppError("Incorrect name and/or password.", 401);
     }
 
     const token = sign({ name }, String(process.env.JWT_SECRET), {
