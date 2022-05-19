@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import ServiceOrder from "../../entities/serviceOrder.entity";
-import AppError from "../../errors/AppError";
+import {AppError} from "../../errors/index";
 
 export default class ShowOrderService {
   async execute(orderId: any): Promise<ServiceOrder> {

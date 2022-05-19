@@ -2,7 +2,7 @@ import { AppDataSource } from "../../data-source";
 import Client from "../../entities/client.entity";
 import ServiceOrder from "../../entities/serviceOrder.entity";
 import User from "../../entities/user.entity";
-import AppError from "../../errors/AppError";
+import {AppError} from "../../errors/index";
 
 interface IServiceOrder {
   userId: string;

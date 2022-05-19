@@ -7,7 +7,7 @@ const serviceTypeCreateController = async (req: Request, res: Response) => {
   try {
     const data = req.body;
 
-    const serviceType: IServiceType = await serviceTypeCreateService(data);
+    const serviceType = await serviceTypeCreateService(data);
 
     return res.status(201).json(serviceType);
   } catch (err) {

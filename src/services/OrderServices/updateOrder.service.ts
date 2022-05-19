@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import ServiceOrder from "../../entities/serviceOrder.entity";
-import AppError from "../../errors/AppError";
+import {AppError} from "../../errors/index";
 
 interface IService {
   id: string;

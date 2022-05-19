@@ -1,5 +1,5 @@
 import Client from "../../entities/client.entity";
-import { AppDataSource } from "../../../data-source";
+import { AppDataSource } from "../../data-source";
 import { IClientID } from "../../interfaces/client/client.interface";
 // import AppError from "../../errors";
 

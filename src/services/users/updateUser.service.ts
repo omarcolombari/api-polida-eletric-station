@@ -1,5 +1,5 @@
 import { compareSync, hash } from "bcrypt";
-import { AppDataSource } from "../../../data-source";
+import { AppDataSource } from "../../data-source";
 import User from "../../entities/user.entity";
 import { AppError } from "../../errors";
 import { IUserUpdate } from "../../interfaces/users";

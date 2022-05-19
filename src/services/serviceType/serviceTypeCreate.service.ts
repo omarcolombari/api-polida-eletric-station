@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../data-source";
-import { ServiceType } from "../../entities/serviceType.entity";
+import  ServiceType  from "../../entities/serviceType.entity";
 import { AppError } from "../../errors";
 import { IServiceTypeCreate } from "../../interfaces/serviceTypes";
 import { fixedFloat } from "../../utils";
@@ -11,16 +11,16 @@ const serviceTypeCreateService = async ({
   const serviceTypeRepository = AppDataSource.getRepository(ServiceType);
 
   const typelAlreadyExists = await serviceTypeRepository.findOne({
-    where: { type },
+    where: { name: type },
   });
 
   if (typelAlreadyExists) {
-    throw new AppError(409, "Type already exists");
+    throw new AppError("Type already exists", 409);
   }
 
   const serviceType = new ServiceType();
-  serviceType.type = type;
-  serviceType.value = fixedFloat(serviceType.value + value);
+  serviceType.name = type;
+  serviceType.price = fixedFloat(serviceType.price + value);
 
   serviceTypeRepository.create(serviceType);
   await serviceTypeRepository.save(serviceType);
