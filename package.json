@@ -1,7 +1,7 @@
 {
   "name": "capstone-m4-node",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.ts",
   "repository": "git@github.com:andersonstpinto/capstone-m4-node.git",
   "author": "drimtim",
   "license": "MIT",
