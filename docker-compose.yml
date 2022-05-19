@@ -1,0 +1,22 @@
+services:
+  api:
+    container_name: capstone
+    image: capstone_drintim
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=capstone
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
+  db:
+    container_name: db_capstone
+    image: postgres:12
+    ports:
+      - 5432:5432
+    volumes:
+      - ./backend/:/code/src/app
+      - /code/src/app/node_modules
