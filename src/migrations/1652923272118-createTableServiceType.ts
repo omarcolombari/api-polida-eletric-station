@@ -26,5 +26,7 @@ export class createTableServiceType1652923272118 implements MigrationInterface {
     );
   }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {}
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable("service_type");
+  }
 }
