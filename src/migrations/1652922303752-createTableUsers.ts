@@ -24,6 +24,10 @@ export class createTableUsers1652922303752 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "contact",
+            type: "varchar",
+          },
+          {
             name: "isAdmin",
             type: "boolean",
             default: "false",
