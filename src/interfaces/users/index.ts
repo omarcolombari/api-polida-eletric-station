@@ -31,3 +31,8 @@ export interface IUserUpdate {
   password: string;
   contact: string;
 }
+
+export interface IUserReq {
+  name: string;
+  isAdmin: boolean;
+}
