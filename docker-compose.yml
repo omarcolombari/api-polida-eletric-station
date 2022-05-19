@@ -17,7 +17,11 @@ services:
     container_name: db_capstone
     image: postgres:12
     ports:
-      - 5432:5432
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=capstone
     volumes:
       - ./backend/:/code/src/app
       - /code/src/app/node_modules
