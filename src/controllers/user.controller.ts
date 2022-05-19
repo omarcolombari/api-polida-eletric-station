@@ -61,10 +61,11 @@ export default class UserController {
   static async show(req: Request, res: Response) {
     try {
       const { user_id } = req.params;
+      const { id, isAdmin } = req.user;
 
       const showUser = new ShowUserService();
 
-      const user = await showUser.execute({ user_id });
+      const user = await showUser.execute({ user_id, id, isAdmin });
 
       return res.status(200).json(user);
     } catch (err) {
@@ -99,7 +100,7 @@ export default class UserController {
 
       const deleteUser = new DeleteUserService();
 
-      const userDeleted = await deleteUser.execute({ user_id });
+      const userDeleted = await deleteUser.execute({ id: user_id });
 
       return res.status(200).json({ message: "User deleted successfully." });
     } catch (err) {

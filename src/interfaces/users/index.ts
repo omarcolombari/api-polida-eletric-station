@@ -23,11 +23,23 @@ export interface IUserToken {
 }
 
 export interface IUserId {
+  id: string;
+}
+
+export interface IUserIds {
   user_id: string;
+  id: string;
+  isAdmin: boolean;
 }
 
 export interface IUserUpdate {
   user_id: string;
   password: string;
   contact: string;
+}
+
+export interface IUserReq {
+  id: string;
+  name: string;
+  isAdmin: boolean;
 }

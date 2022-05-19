@@ -22,10 +22,14 @@ export default class authUserService {
       throw new AppError("Incorrect name and/or password.", 401);
     }
 
-    const token = sign({ name }, String(process.env.JWT_SECRET), {
-      subject: user.id,
-      expiresIn: "24h",
-    });
+    const token = sign(
+      { name: user.name, isAdmin: user.isAdmin },
+      String(process.env.JWT_SECRET),
+      {
+        subject: user.id,
+        expiresIn: "24h",
+      }
+    );
 
     return { token };
   }
