@@ -6,12 +6,12 @@
   "author": "drimtim",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/server.ts",
+    "dev": "ts-node-dev --inspect --ignore-watch node_modules src/server.ts",
     "test": "NODE_ENV=test jest",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "buid": "tsc"
   },
   "dependencies": {
-    "@types/uuid": "^8.3.4",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.5.1",
     "dotenv": "^16.0.1",
@@ -29,6 +29,7 @@
     "@types/jest": "^27.5.1",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/supertest": "^2.0.12",
+    "@types/uuid": "^8.3.4",
     "jest": "27.5.1",
     "sqlite3": "^5.0.8",
     "supertest": "^6.2.3",
