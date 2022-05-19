@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AppError, handleError } from "../../errors";
+import { AppError, AppErrorHandler } from "../../errors";
 import { IServiceType } from "../../interfaces/serviceTypes";
 import serviceTypeCreateService from "../../services/serviceType/serviceTypeCreate.service";
 
@@ -12,7 +12,7 @@ const serviceTypeCreateController = async (req: Request, res: Response) => {
     return res.status(201).json(serviceType);
   } catch (err) {
     if (err instanceof AppError) {
-      handleError(err, res);
+      AppErrorHandler(err, res);
     }
   }
 };
