@@ -6,8 +6,10 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinTable,
+  OneToMany,
 } from "typeorm";
 import Client from "./client.entity";
+import ServiceOrder from "./serviceOrder.entity";
 
 @Entity("units")
 export default class Unit {
@@ -29,9 +31,19 @@ export default class Unit {
   @Column("float")
   cable_meter: number;
 
-  @ManyToOne(type => Client, client => client.units)
+  @ManyToOne((type) => Client, (client) => client.units, {
+    onDelete: "CASCADE",
+  })
   @JoinTable()
   client: Client;
+
+  @OneToMany((type) => ServiceOrder, (serviceOrder) => serviceOrder.unit, {
+    eager: true,
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE",
+  })
+  @JoinTable()
+  service_order: ServiceOrder[];
 
   @CreateDateColumn()
   created_at: Date;

@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: capstone
+    image: capstone_drintim
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - POSTGRES_USER=mottaluizantonio
+      - POSTGRES_PASSWORD=llamcm
+      - POSTGRES_DB=capstonem4
+    depends_on:
+      - db
+  db:
+    container_name: db_capstone
+    image: postgres:12
+    ports:
+      - 45432:5432
+    volumes:
+      - ./backend/:/code/src/app
+      - /code/src/app/node_modules
