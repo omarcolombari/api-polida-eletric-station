@@ -9,7 +9,8 @@
     "dev": "ts-node-dev --inspect --ignore-watch node_modules src/server.ts",
     "test": "NODE_ENV=test jest",
     "typeorm": "typeorm-ts-node-commonjs",
-    "buid": "tsc"
+    "buid": "tsc",
+    "start": "node dist/src/server.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
