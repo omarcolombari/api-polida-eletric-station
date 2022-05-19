@@ -8,7 +8,7 @@ interface IServiceOrder {
   userId: string;
   serviceId: string;
   clientId: string;
-  status?: string;
+  status: string;
   reschedule?: string;
 }
 
