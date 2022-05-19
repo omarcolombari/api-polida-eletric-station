@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
-import { AppDataSource } from "../../data-source";
+import { AppDataSource } from "../../../data-source";
 import request from "supertest";
-import app from "../../app";
+import app from "../../../../app";
 
 import * as uuid from "uuid";
 jest.mock("uuid");
@@ -24,16 +24,22 @@ describe(" POST - /units ", () => {
   test(" Should create a unit", async () => {
     const street = "nameOfStreet";
     const st_number = 111;
-    const district = "where"
-    const voltage = "X volts"
-    const cable_meter = 10
-    const clientId = "umClienteQualquer"
-    
+    const district = "where";
+    const voltage = "X volts";
+    const cable_meter = 10;
+    const clientId = "umClienteQualquer";
 
     const uuidSpy = jest.spyOn(uuid, "v4");
     uuidSpy.mockReturnValue("some-uuid");
 
-    const unitData = { street, st_number, district, voltage, cable_meter, clientId };
+    const unitData = {
+      street,
+      st_number,
+      district,
+      voltage,
+      cable_meter,
+      clientId,
+    };
 
     const response = await request(app).post("/units").send(unitData);
 
@@ -49,7 +55,7 @@ describe(" POST - /units ", () => {
         district,
         voltage,
         cable_meter,
-        clientId
+        clientId,
       })
     );
   });

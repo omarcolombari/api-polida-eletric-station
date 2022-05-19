@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
-import { AppDataSource } from "../../data-source";
+import { AppDataSource } from "../../../data-source";
 import request from "supertest";
-import app from "../../app";
+import app from "../../../../app";
 
 import * as uuid from "uuid";
 jest.mock("uuid");
@@ -25,7 +25,7 @@ describe(" POST - /clients ", () => {
   test(" Should create a Client", async () => {
     const name = "testClient";
     const contact = "111222333";
-    const unit = [];
+    const unit: String[] = [];
     const created_at = new Date();
     const updated_at = new Date();
 

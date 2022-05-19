@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
-import { AppDataSource } from "../../data-source";
+import { AppDataSource } from "../../../data-source";
 import request from "supertest";
-import app from "../../app";
+import app from "../../../../app";
 
 describe(" GET - /users ", () => {
   let connection: DataSource;
@@ -19,10 +19,10 @@ describe(" GET - /users ", () => {
   });
 
   test(" Should list all users", async () => {
-    const response = await request(app).get("/users")
+    const response = await request(app).get("/users");
 
     expect(response.status).toBe(200);
 
-    expect(response.body).toHaveProperty("map")
+    expect(response.body).toHaveProperty("map");
   });
 });

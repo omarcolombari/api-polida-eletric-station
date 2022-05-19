@@ -1,9 +1,9 @@
 import { DataSource } from "typeorm";
 import { AppDataSource } from "../../../data-source";
 import request from "supertest";
-import app from "../../../../app";
+import app from "../../../app";
 
-describe(" GET - /clients ", () => {
+describe(" GET - /orders ", () => {
   let connection: DataSource;
 
   beforeAll(async () => {
@@ -18,8 +18,8 @@ describe(" GET - /clients ", () => {
     await connection.destroy();
   });
 
-  test(" Should list all clients", async () => {
-    const response = await request(app).get("/clients");
+  test(" Should list all service orders", async () => {
+    const response = await request(app).get("/orders");
 
     expect(response.status).toBe(200);
 
