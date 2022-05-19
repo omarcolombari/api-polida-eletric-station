@@ -6,11 +6,11 @@ services:
     ports:
       - 3000:3000
     environment:
-      - DB_USER=leome
-      - DB_PASSWORD=2909
+      - DB_USER=atualizar
+      - DB_PASSWORD=atualizar
       - DB_HOST=db
       - DB_PORT=5432
-      - DB=capstone_teste
+      - DB=atualizar
     depends_on:
       - db
   db:
@@ -19,9 +19,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=leome
-      - POSTGRES_PASSWORD=2909
-      - POSTGRES_DB=capstone_teste
+      - POSTGRES_USER=atualizar
+      - POSTGRES_PASSWORD=atualizar
+      - POSTGRES_DB=db_name
     volumes:
       - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
       - ./backend/:/code/src/app
