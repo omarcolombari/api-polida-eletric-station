@@ -5,10 +5,10 @@ import { AppError } from "../../errors";
 import { IUserUpdate } from "../../interfaces/users";
 
 export default class UpdateUserService {
-  async execute({ user_id, password, contact }: IUserUpdate): Promise<User> {
+  async execute({ id, password, contact }: IUserUpdate): Promise<User> {
     const userRepository = AppDataSource.getRepository(User);
 
-    const user = await userRepository.findOne({ where: { id: user_id } });
+    const user = await userRepository.findOne({ where: { id } });
 
     if (!user) {
       throw new AppError("User not found", 401);

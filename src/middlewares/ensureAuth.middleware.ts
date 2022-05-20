@@ -22,9 +22,9 @@ const ensureAuthMiddleware = (
           throw new AppError("Invalid Token", 401);
         }
 
-        const { sub, isAdmin, name } = decoded;
+        const { sub, isAdmin, cpf } = decoded;
 
-        req.user = { id: sub, name, isAdmin };
+        req.user = { id: sub, cpf, isAdmin };
 
         next();
       }

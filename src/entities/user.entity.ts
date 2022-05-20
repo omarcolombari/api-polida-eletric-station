@@ -14,6 +14,9 @@ export default class User {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
+  @Column({ unique: true })
+  cpf: number;
+
   @Column()
   name: string;
 
@@ -26,7 +29,7 @@ export default class User {
   @Column()
   isAdmin: boolean;
 
-  @OneToMany(type => ServiceOrder, serviceOrder => serviceOrder.user, {
+  @OneToMany((type) => ServiceOrder, (serviceOrder) => serviceOrder.user, {
     eager: true,
     onDelete: "CASCADE",
     onUpdate: "CASCADE",

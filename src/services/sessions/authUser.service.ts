@@ -8,23 +8,23 @@ import "dotenv/config";
 import { IUserAuth, IUserToken } from "../../interfaces/users";
 
 export default class authUserService {
-  public async execute({ name, password }: IUserAuth): Promise<IUserToken> {
+  public async execute({ cpf, password }: IUserAuth): Promise<IUserToken> {
     const userRepository = AppDataSource.getRepository(User);
 
-    const user = await userRepository.findOne({ where: { name } });
+    const user = await userRepository.findOne({ where: { cpf } });
 
     if (!user) {
-      throw new AppError("Incorrect name and/or password.", 401);
+      throw new AppError("Incorrect CPF and/or password.", 401);
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new AppError("Incorrect name and/or password.", 401);
+      throw new AppError("Incorrect CPF and/or password.", 401);
     }
 
     const token = sign(
-      { name: user.name, isAdmin: user.isAdmin },
+      { cpf: user.cpf, isAdmin: user.isAdmin },
       String(process.env.JWT_SECRET),
       {
         subject: user.id,
