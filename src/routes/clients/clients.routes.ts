@@ -10,18 +10,17 @@ const clientRouter = Router();
 export default () => {
   clientRouter.use(ensureAuthMiddleware);
 
-  clientRouter.post(
-    "/",
-    expressYupMiddleware({ schemaValidator: createClientSchema }),
-    ClientController.store
-  );
   clientRouter.get("/", ClientController.index);
   clientRouter.get("/:client_id", ClientController.show);
 
   clientRouter.use(verifyAdminMiddleware);
 
+  clientRouter.post(
+    "/",
+    expressYupMiddleware({ schemaValidator: createClientSchema }),
+    ClientController.store
+  );
   clientRouter.delete("/:client_id", ClientController.delete);
-  clientRouter.post("/", ClientController.store);
 
   return clientRouter;
 };
