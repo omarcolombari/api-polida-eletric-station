@@ -6,13 +6,19 @@ const verifyAdminMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  const { isAdmin } = req.user;
+  try {
+    const { isAdmin } = req.user;
 
-  if (!isAdmin) {
-    throw new AppError("User is not admin.", 409);
+    if (!isAdmin) {
+      throw new AppError("User is not admin.", 409);
+    }
+
+    next();
+  } catch (err) {
+    if (err instanceof AppError) {
+      AppErrorHandler(err, res);
+    }
   }
-
-  next();
 };
 
 export default verifyAdminMiddleware;

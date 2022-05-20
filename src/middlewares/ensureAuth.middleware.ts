@@ -7,27 +7,33 @@ const ensureAuthMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.headers.authorization;
+  try {
+    const token = req.headers.authorization;
 
-  if (!token) {
-    throw new AppError("Token is missing.", 401);
-  }
-
-  verify(
-    token as string,
-    process.env.JWT_SECRET as string,
-    (err: any, decoded: any) => {
-      if (err) {
-        throw new AppError("Invalid Token", 401);
-      }
-
-      const { sub, isAdmin, name } = decoded;
-
-      req.user = { id: sub, name, isAdmin };
-
-      next();
+    if (!token) {
+      throw new AppError("Token is missing.", 401);
     }
-  );
+
+    verify(
+      token as string,
+      process.env.JWT_SECRET as string,
+      (err: any, decoded: any) => {
+        if (err) {
+          throw new AppError("Invalid Token", 401);
+        }
+
+        const { sub, isAdmin, name } = decoded;
+
+        req.user = { id: sub, name, isAdmin };
+
+        next();
+      }
+    );
+  } catch (err) {
+    if (err instanceof AppError) {
+      AppErrorHandler(err, res);
+    }
+  }
 };
 
 export default ensureAuthMiddleware;
