@@ -18,6 +18,10 @@ services:
     image: postgres:12
     ports:
       - 45432:5432
+    environment:
+      - POSTGRES_USER=mottaluizantonio
+      - POSTGRES_PASSWORD=llamcm
+      - POSTGRES_DB=capstonem4
     volumes:
       - ./backend/:/code/src/app
       - /code/src/app/node_modules
