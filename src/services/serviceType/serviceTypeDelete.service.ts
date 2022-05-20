@@ -1,14 +1,15 @@
 import { AppDataSource } from "../../data-source";
-import  ServiceType  from "../../entities/serviceType.entity";
+import ServiceType from "../../entities/serviceType.entity";
+import { AppError } from "../../errors";
 
 const serviceTypeDeleteService = async (id: string) => {
   const serviceTypeRepository = AppDataSource.getRepository(ServiceType);
 
-  const serviceTypes = await serviceTypeRepository.find();
+  const service = await serviceTypeRepository.findOne({ where: { id } });
 
-  const service = serviceTypes.find((data) => data.id === id);
+  if (!service) throw new AppError("Service not found", 404);
 
-  await serviceTypeRepository.delete(service!.id);
+  await serviceTypeRepository.delete(service.id);
 
   return true;
 };

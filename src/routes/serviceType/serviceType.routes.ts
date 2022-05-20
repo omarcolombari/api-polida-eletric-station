@@ -1,19 +1,25 @@
 import { Router } from "express";
+import ServiceTypeController from "../../controllers/serviceType.controller";
+import ensureAuthMiddleware from "../../middlewares/ensureAuth.middleware";
+import verifyAdminMiddleware from "../../middlewares/verifyAdmin.middleware";
+import { expressYupMiddleware } from "express-yup-middleware";
 // import middleware
 
-import serviceTypeCreateController from "../../controllers/serviceType/serviceTypeCreate.controller";
-import serviceTypeDeleteController from "../../controllers/serviceType/serviceTypeDelete.controller";
-import serviceTypeListController from "../../controllers/serviceType/serviceTypeList.controller";
+import createServiceTypeSchema from "../../validations/createServiceType.validation";
 
 const routes = Router();
 
 export const serviceRoutes = () => {
-  routes.post("/", serviceTypeCreateController);
-  routes.get("/", serviceTypeListController);
-  routes.delete("/:id", serviceTypeDeleteController);
+  routes.use(ensureAuthMiddleware);
+  routes.use(verifyAdminMiddleware);
 
-  // routes.use(middleware);
-  // routes.delete("". Controller);
+  routes.post(
+    "/",
+    expressYupMiddleware({ schemaValidator: createServiceTypeSchema }),
+    ServiceTypeController.store
+  );
+  routes.get("/", ServiceTypeController.show);
+  routes.delete("/:id", ServiceTypeController.delete);
 
   return routes;
 };

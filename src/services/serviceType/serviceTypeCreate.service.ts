@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../data-source";
-import  ServiceType  from "../../entities/serviceType.entity";
+import ServiceType from "../../entities/serviceType.entity";
 import { AppError } from "../../errors";
 import { IServiceTypeCreate } from "../../interfaces/serviceTypes";
 import { fixedFloat } from "../../utils";
@@ -20,7 +20,7 @@ const serviceTypeCreateService = async ({
 
   const serviceType = new ServiceType();
   serviceType.name = type;
-  serviceType.price = fixedFloat(serviceType.price + value);
+  serviceType.price = fixedFloat(value);
 
   serviceTypeRepository.create(serviceType);
   await serviceTypeRepository.save(serviceType);

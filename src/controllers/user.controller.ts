@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { AppError, AppErrorHandler } from "../errors";
 
 import authUserService from "../services/sessions/authUser.service";
 import CreateUserService from "../services/users/createUser.service";

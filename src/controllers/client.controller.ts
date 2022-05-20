@@ -33,12 +33,11 @@ export default class ClientController {
   static async delete(req: Request, res: Response) {
     const { client_id } = req.params;
     const client = new DeleteClientService();
-    
+
     await client.execute({
       id: client_id,
     });
-    
+
     return res.status(204).json();
   }
-  // static async update(req: Request, res: Response) {}
 }

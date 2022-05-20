@@ -1,28 +1,28 @@
 import { AppDataSource } from "../../data-source";
-import Client from "../../entities/client.entity";
 import ServiceOrder from "../../entities/serviceOrder.entity";
+import Unit from "../../entities/unit.entity";
 import User from "../../entities/user.entity";
-import {AppError} from "../../errors/index";
+import { AppError } from "../../errors/index";
 
 interface IServiceOrder {
   userId: string;
-  serviceId: string;
-  clientId: string;
-  status?: string;
-  reschedule?: string;
+  serviceTypeId: string;
+  unitId: string;
+  status: string;
+  reschedule: string;
 }
 
 export default class CreateOrderService {
   async execute(data: IServiceOrder): Promise<ServiceOrder> {
-    const clientRepository = AppDataSource.getRepository(Client);
+    const unitRepository = AppDataSource.getRepository(Unit);
     const serviceOrderRepository = AppDataSource.getRepository(ServiceOrder);
     const userRepository = AppDataSource.getRepository(User);
 
-    const client = await clientRepository.findOne({
-      where: { id: data.clientId },
+    const unit = await unitRepository.findOne({
+      where: { id: data.unitId },
     });
-    if (!client) {
-      throw new AppError("Client not found", 404);
+    if (!unit) {
+      throw new AppError("Unit not found", 404);
     }
 
     const user = await userRepository.findOne({ where: { id: data.userId } });

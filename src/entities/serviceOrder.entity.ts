@@ -37,6 +37,15 @@ export default class ServiceOrder {
   @Column({ nullable: true })
   reschedule: string;
 
+  @Column()
+  unitId: string
+
+  @Column()
+  serviceTypeId: string
+
+  @Column()
+  userId: string
+
   @CreateDateColumn()
   created_at: Date;
 

@@ -1,6 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import Unit from "../../entities/unit.entity";
 import { IUnitUpdate } from "../../interfaces/unit/unit.interface";
+import { AppError } from "../../errors";
 
 const updateUnitService = async (
   id: string,
@@ -11,7 +12,7 @@ const updateUnitService = async (
   const unit = await unitRepository.findOne({ where: { id } });
 
   if (!unit) {
-    throw new Error("Unit not found");
+    throw new AppError("Unit not found", 404);
   }
 
   street ? (unit.street = street) : unit.street;
