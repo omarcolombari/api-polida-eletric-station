@@ -7,9 +7,15 @@ import UpdateOrderService from "../services/OrderServices/updateOrder.service";
 
 export default class OrderServiceController {
   static async store(req: Request, res: Response) {
-    const { userId, clientId, serviceId } = req.body;
+    const { userId, unitId, serviceTypeId, reschedule, status } = req.body;
     const createOrder = new CreateOrderService();
-    const order = await createOrder.execute({ userId, clientId, serviceId });
+    const order = await createOrder.execute({
+      userId,
+      serviceTypeId,
+      unitId,
+      reschedule,
+      status,
+    });
     return res.status(201).json(order);
   }
   static async index(req: Request, res: Response) {
@@ -32,8 +38,8 @@ export default class OrderServiceController {
   }
 
   static async showPerUserId(req: Request, res: Response) {
-         const { id } = req.user;
-         const showOrderPerIdService = new ShowOrderPerIdService();
-         const orders = await showOrderPerIdService.execute(id);
+    const { id } = req.user;
+    const showOrderPerIdService = new ShowOrderPerIdService();
+    const orders = await showOrderPerIdService.execute(id);
   }
 }
