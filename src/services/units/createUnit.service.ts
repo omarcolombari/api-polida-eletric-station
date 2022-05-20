@@ -8,6 +8,7 @@ const createUnitService = async ({
   district,
   voltage,
   cable_meter,
+  clientId
 }: IUnitCreate) => {
   const unitRepository = AppDataSource.getRepository(Unit);
 
@@ -17,6 +18,7 @@ const createUnitService = async ({
     district,
     voltage,
     cable_meter,
+    clientId
   });
 
   await unitRepository.save(newUnit);

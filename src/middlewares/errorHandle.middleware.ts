@@ -15,6 +15,7 @@ const errorHandle = (
     });
   }
 
+  console.log(err.message)
   return res.status(500).json({
     status: "error",
     code: 500,

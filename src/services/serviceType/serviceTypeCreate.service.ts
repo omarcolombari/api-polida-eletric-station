@@ -6,7 +6,7 @@ import { fixedFloat } from "../../utils";
 
 const serviceTypeCreateService = async ({
   type,
-  value,
+  price,
 }: IServiceTypeCreate) => {
   const serviceTypeRepository = AppDataSource.getRepository(ServiceType);
 
@@ -20,7 +20,7 @@ const serviceTypeCreateService = async ({
 
   const serviceType = new ServiceType();
   serviceType.name = type;
-  serviceType.price = fixedFloat(value);
+  serviceType.price = fixedFloat(price);
 
   serviceTypeRepository.create(serviceType);
   await serviceTypeRepository.save(serviceType);

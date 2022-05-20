@@ -1,6 +1,6 @@
 export interface IUser {
   id: string;
-  cpf: number;
+  cpf: string;
   name: string;
   password: string;
   contact: string;
@@ -8,7 +8,7 @@ export interface IUser {
 }
 
 export interface IUserCreate {
-  cpf: number;
+  cpf: string;
   name: string;
   password: string;
   contact: string;
@@ -16,7 +16,7 @@ export interface IUserCreate {
 }
 
 export interface IUserAuth {
-  cpf: number;
+  cpf: string;
   password: string;
 }
 
@@ -42,6 +42,6 @@ export interface IUserUpdate {
 
 export interface IUserReq {
   id: string;
-  cpf: number;
+  cpf: string;
   isAdmin: boolean;
 }

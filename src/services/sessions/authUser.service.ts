@@ -10,10 +10,10 @@ import { IUserAuth, IUserToken } from "../../interfaces/users";
 export default class authUserService {
   public async execute({ cpf, password }: IUserAuth): Promise<IUserToken> {
     const userRepository = AppDataSource.getRepository(User);
-
+  
     const user = await userRepository.findOne({ where: { cpf } });
-
-    if (!user) {
+  
+    if (!user || !cpf) {
       throw new AppError("Incorrect CPF and/or password.", 401);
     }
 

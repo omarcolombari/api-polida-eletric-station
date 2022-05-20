@@ -15,7 +15,7 @@ export default class User {
   readonly id: string;
 
   @Column({ unique: true })
-  cpf: number;
+  cpf: string;
 
   @Column()
   name: string;

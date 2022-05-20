@@ -5,8 +5,8 @@ const createOrderServiceSchema = {
     body: {
       yupSchema: yup.object().shape({
         userId: yup.string().required("User id is required"),
-        clientId: yup.string().required("Client id is required"),
-        serviceId: yup.string().required("Service id is required"),
+        unitId: yup.string().required("Unit id is required"),
+        serviceTypeId: yup.string().required("Service id is required"),
         status: yup.string().required("Status is required"),
       }),
       validateOptions: {

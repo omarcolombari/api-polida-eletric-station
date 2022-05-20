@@ -4,6 +4,7 @@ export interface IUnitCreate {
   district: string;
   voltage: number;
   cable_meter: number;
+  clientId: string;
 }
 
 export interface IUnitUpdate {

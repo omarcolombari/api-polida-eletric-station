@@ -5,7 +5,7 @@ import updateUnitService from "../services/units/updateUnit.service";
 
 export class UnitsController {
   static async store(req: Request, res: Response) {
-    const { street, st_number, district, voltage, cable_meter } = req.body;
+    const { street, st_number, district, voltage, cable_meter, clientId } = req.body;
 
     const newUnit = await createUnitService({
       street,
@@ -13,6 +13,7 @@ export class UnitsController {
       district,
       voltage,
       cable_meter,
+      clientId
     });
 
     return res.status(201).json(newUnit);
