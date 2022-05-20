@@ -1,7 +1,7 @@
 import Client from "../../entities/client.entity";
 import { AppDataSource } from "../../data-source";
 import { IClientUpdate } from "../../interfaces/client/client.interface";
-// import AppError from "../../errors";
+import { AppError } from "../../errors";
 
 export default class UpdateClientService {
   async execute({ id, contact, name }: IClientUpdate): Promise<Client> {
@@ -9,8 +9,7 @@ export default class UpdateClientService {
     const client = await clientRepository.findOne({ where: { id } });
 
     if (!client) {
-      // throw new AppError("Not found any client with this id")
-      throw new Error("Not found any client with this id");
+      throw new AppError("Not found any client with this id", 404);
     }
 
     contact ? (client.contact = contact) : client.contact;
