@@ -17,7 +17,7 @@ export default class ServiceTypeController {
 
     const type = await serviceTypeDeleteService(id);
 
-    return res.status(204);
+    return res.status(204).json();
   }
 
   static async show(req: Request, res: Response) {
