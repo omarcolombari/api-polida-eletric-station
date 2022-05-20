@@ -10,103 +10,71 @@ import UpdateUserService from "../services/users/updateUser.service";
 
 export default class UserController {
   static async store(req: Request, res: Response) {
-    try {
-      const { name, password, contact, isAdmin } = req.body;
+    const { name, password, contact, isAdmin } = req.body;
 
-      const createUser = new CreateUserService();
+    const createUser = new CreateUserService();
 
-      const user = await createUser.execute({
-        name,
-        password,
-        contact,
-        isAdmin,
-      });
+    const user = await createUser.execute({
+      name,
+      password,
+      contact,
+      isAdmin,
+    });
 
-      return res.status(201).json(user);
-    } catch (err) {
-      if (err instanceof AppError) {
-        AppErrorHandler(err, res);
-      }
-    }
+    return res.status(201).json(user);
   }
 
   static async session(req: Request, res: Response) {
-    try {
-      const { name, password } = req.body;
+    const { name, password } = req.body;
 
-      const auth = new authUserService();
+    const auth = new authUserService();
 
-      const token = await auth.execute({ name, password });
+    const token = await auth.execute({ name, password });
 
-      return res.status(200).json(token);
-    } catch (err) {
-      if (err instanceof AppError) {
-        AppErrorHandler(err, res);
-      }
-    }
+    return res.status(200).json(token);
   }
+
   static async index(req: Request, res: Response) {
-    try {
-      const listUsers = new ListUsersService();
+    const listUsers = new ListUsersService();
 
-      const users = await listUsers.execute();
+    const users = await listUsers.execute();
 
-      return res.status(200).json(users);
-    } catch (err) {
-      if (err instanceof AppError) {
-        AppErrorHandler(err, res);
-      }
-    }
+    return res.status(200).json(users);
   }
+
   static async show(req: Request, res: Response) {
-    try {
-      const { user_id } = req.params;
-      const { id, isAdmin } = req.user;
+    const { user_id } = req.params;
+    const { id, isAdmin } = req.user;
 
-      const showUser = new ShowUserService();
+    const showUser = new ShowUserService();
 
-      const user = await showUser.execute({ user_id, id, isAdmin });
+    const user = await showUser.execute({ user_id, id, isAdmin });
 
-      return res.status(200).json(user);
-    } catch (err) {
-      if (err instanceof AppError) {
-        AppErrorHandler(err, res);
-      }
-    }
+    return res.status(200).json(user);
   }
+
   static async update(req: Request, res: Response) {
-    try {
-      const { password, contact } = req.body;
-      const { id } = req.user;
+    const { password, contact } = req.body;
+    const { id } = req.user;
 
-      const updateUser = new UpdateUserService();
+    const updateUser = new UpdateUserService();
 
-      const user = await updateUser.execute({
-        id,
-        password,
-        contact,
-      });
+    const user = await updateUser.execute({
+      id,
+      password,
+      contact,
+    });
 
-      return res.status(200).json(user);
-    } catch (err) {
-      if (err instanceof AppError) {
-        AppErrorHandler(err, res);
-      }
-    }
+    return res.status(200).json(user);
   }
+
   static async delete(req: Request, res: Response) {
-    try {
-      const { id } = req.user;
+    const { id } = req.user;
 
-      const deleteUser = new DeleteUserService();
+    const deleteUser = new DeleteUserService();
 
-      const userDeleted = await deleteUser.execute({ id });
+    const userDeleted = await deleteUser.execute({ id });
 
-      return res.status(200).json({ message: "User deleted successfully." });
-    } catch (err) {
-      if (err instanceof AppError) {
-        AppErrorHandler(err, res);
-      }
-    }
+    return res.status(200).json({ message: "User deleted successfully." });
   }
 }
