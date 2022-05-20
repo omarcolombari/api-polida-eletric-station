@@ -9,11 +9,12 @@ import UpdateUserService from "../services/users/updateUser.service";
 
 export default class UserController {
   static async store(req: Request, res: Response) {
-    const { name, password, contact, isAdmin } = req.body;
+    const { cpf, name, password, contact, isAdmin } = req.body;
 
     const createUser = new CreateUserService();
 
     const user = await createUser.execute({
+      cpf,
       name,
       password,
       contact,
@@ -24,11 +25,11 @@ export default class UserController {
   }
 
   static async session(req: Request, res: Response) {
-    const { name, password } = req.body;
+    const { cpf, password } = req.body;
 
     const auth = new authUserService();
 
-    const token = await auth.execute({ name, password });
+    const token = await auth.execute({ cpf, password });
 
     return res.status(200).json(token);
   }
