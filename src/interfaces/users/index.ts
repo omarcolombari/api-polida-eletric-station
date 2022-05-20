@@ -33,7 +33,7 @@ export interface IUserIds {
 }
 
 export interface IUserUpdate {
-  user_id: string;
+  id: string;
   password: string;
   contact: string;
 }

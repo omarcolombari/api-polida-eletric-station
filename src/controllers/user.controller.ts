@@ -77,12 +77,12 @@ export default class UserController {
   static async update(req: Request, res: Response) {
     try {
       const { password, contact } = req.body;
-      const { user_id } = req.params;
+      const { id } = req.user;
 
       const updateUser = new UpdateUserService();
 
       const user = await updateUser.execute({
-        user_id,
+        id,
         password,
         contact,
       });
@@ -96,11 +96,11 @@ export default class UserController {
   }
   static async delete(req: Request, res: Response) {
     try {
-      const { user_id } = req.params;
+      const { id } = req.user;
 
       const deleteUser = new DeleteUserService();
 
-      const userDeleted = await deleteUser.execute({ id: user_id });
+      const userDeleted = await deleteUser.execute({ id });
 
       return res.status(200).json({ message: "User deleted successfully." });
     } catch (err) {
