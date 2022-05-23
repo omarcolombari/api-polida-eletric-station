@@ -9,6 +9,7 @@ const createUnitSchema = {
         district: yup.string().required("District is required"),
         voltage: yup.number().required("Voltage is required"),
         cable_meter: yup.number().required("Cable meter is required"),
+        clientId: yup.string().required("Client id is required")
       }),
       validateOptions: {
         abortEarly: false,
