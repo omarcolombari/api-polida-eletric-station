@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import {AppError} from "../errors/index";
+import { AppError } from "../errors/index";
 
 const errorHandle = (
   err: Error,
@@ -15,7 +15,7 @@ const errorHandle = (
     });
   }
 
-  console.log(err.message)
+  console.log(err.message);
   return res.status(500).json({
     status: "error",
     code: 500,
