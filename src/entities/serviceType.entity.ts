@@ -18,11 +18,15 @@ export default class ServiceType {
   @Column("float")
   price: number;
 
-  @OneToMany(type => ServiceOrder, serviceOrder => serviceOrder.service_type, {
-    eager: true,
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE",
-  })
+  @OneToMany(
+    (type) => ServiceOrder,
+    (serviceOrder) => serviceOrder.service_type,
+    {
+      eager: true,
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    }
+  )
   @JoinColumn()
   service_order: ServiceOrder[];
 }

@@ -26,7 +26,7 @@ export default class User {
   @Column()
   contact: string;
 
-  @Column()
+  @Column({ default: false })
   isAdmin: boolean;
 
   @OneToMany((type) => ServiceOrder, (serviceOrder) => serviceOrder.user, {
