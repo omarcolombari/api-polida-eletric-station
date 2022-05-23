@@ -29,6 +29,7 @@ export default class ServiceOrder {
   @ManyToOne((type) => Unit, (unit) => unit.service_order, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
+    eager: true,
   })
   @JoinColumn()
   unit: Unit;
