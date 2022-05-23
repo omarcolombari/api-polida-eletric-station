@@ -11,7 +11,7 @@ import ServiceType from "./serviceType.entity";
 import Unit from "./unit.entity";
 import User from "./user.entity";
 
-type StatusType = "Aberto" | "Fechado";
+export type StatusType = "Aberto" | "Fechado";
 
 @Entity("service_order")
 export default class ServiceOrder {
