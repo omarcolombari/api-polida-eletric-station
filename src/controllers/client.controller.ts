@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import { AppDataSource } from "../data-source";
-import Client from "../entities/client.entity";
 import CreateClientService from "../services/clients/CreateClient.service";
 import DeleteClientService from "../services/clients/DeleteClient.service";
+import ListClientService from "../services/clients/ListClient.service";
 import ListOneClientService from "../services/clients/ListOneClient.service";
 
 export default class ClientController {
@@ -17,8 +16,8 @@ export default class ClientController {
     return res.status(201).json(client);
   }
   static async index(req: Request, res: Response) {
-    const clientRepository = AppDataSource.getRepository(Client);
-    const clients = await clientRepository.find();
+    const listClients = new ListClientService();
+    const clients = await listClients.execute();
     return res.json(clients);
   }
   static async show(req: Request, res: Response) {
