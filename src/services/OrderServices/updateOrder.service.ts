@@ -1,13 +1,14 @@
 import { AppDataSource } from "../../data-source";
 import ServiceOrder from "../../entities/serviceOrder.entity";
-import {AppError} from "../../errors/index";
+import { AppError } from "../../errors/index";
+import { StatusType } from "../../entities/serviceOrder.entity";
 
 interface IService {
   id: string;
   userId?: string;
   serviceId?: string;
   clientId?: string;
-  status: string;
+  status: StatusType;
   reschedule?: string;
 }
 

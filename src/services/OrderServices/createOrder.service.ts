@@ -3,12 +3,13 @@ import ServiceOrder from "../../entities/serviceOrder.entity";
 import Unit from "../../entities/unit.entity";
 import User from "../../entities/user.entity";
 import { AppError } from "../../errors/index";
+import {StatusType} from "../../entities/serviceOrder.entity"
 
 interface IServiceOrder {
   userId: string;
   serviceTypeId: string;
   unitId: string;
-  status: string;
+  status: StatusType;
   reschedule: string;
 }
 
