@@ -1,10 +1,10 @@
 export interface IServiceType {
   id: string;
-  type: string;
+  name: string;
   price: number;
 }
 
 export interface IServiceTypeCreate {
-  type: string;
+  name: string;
   price: number;
 }

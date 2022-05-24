@@ -5,13 +5,13 @@ import { IServiceTypeCreate } from "../../interfaces/serviceTypes";
 import { fixedFloat } from "../../utils";
 
 const serviceTypeCreateService = async ({
-  type,
+  name,
   price,
 }: IServiceTypeCreate) => {
   const serviceTypeRepository = AppDataSource.getRepository(ServiceType);
 
   const typelAlreadyExists = await serviceTypeRepository.findOne({
-    where: { name: type },
+    where: { name },
   });
 
   if (typelAlreadyExists) {
@@ -19,7 +19,7 @@ const serviceTypeCreateService = async ({
   }
 
   const serviceType = new ServiceType();
-  serviceType.name = type;
+  serviceType.name = name;
   serviceType.price = fixedFloat(price);
 
   serviceTypeRepository.create(serviceType);
