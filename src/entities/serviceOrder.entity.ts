@@ -11,22 +11,20 @@ import ServiceType from "./serviceType.entity";
 import Unit from "./unit.entity";
 import User from "./user.entity";
 
-export type StatusType = "Aberto" | "Fechado";
-
 @Entity("service_order")
 export default class ServiceOrder {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
-  @ManyToOne((type) => User, (user) => user.service_order)
+  @ManyToOne(type => User, user => user.service_order)
   @JoinColumn()
   user: User;
 
-  @ManyToOne((type) => ServiceType, (serviceType) => serviceType.service_order)
+  @ManyToOne(type => ServiceType, serviceType => serviceType.service_order)
   @JoinColumn()
   service_type: ServiceType;
 
-  @ManyToOne((type) => Unit, (unit) => unit.service_order, {
+  @ManyToOne(type => Unit, unit => unit.service_order, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
     eager: true,
@@ -35,12 +33,9 @@ export default class ServiceOrder {
   unit: Unit;
 
   @Column({
-    type: "enum",
-    enum: ["Aberto", "Fechado"],
-    enumName: "statusEnum",
     default: "Aberto",
   })
-  status: StatusType;
+  status: string;
 
   @Column({ nullable: true, default: null })
   reschedule: string;

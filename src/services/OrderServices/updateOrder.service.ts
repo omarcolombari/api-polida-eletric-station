@@ -1,16 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import ServiceOrder from "../../entities/serviceOrder.entity";
 import { AppError } from "../../errors/index";
-import { StatusType } from "../../entities/serviceOrder.entity";
-
-interface IService {
-  id: string;
-  userId?: string;
-  serviceId?: string;
-  clientId?: string;
-  status: StatusType;
-  reschedule?: string;
-}
+import { IService } from "../../interfaces/serviceOrder";
 
 export default class UpdateOrderService {
   async execute({ id, status, reschedule }: IService): Promise<ServiceOrder> {
