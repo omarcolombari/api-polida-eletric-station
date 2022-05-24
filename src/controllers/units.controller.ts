@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import createUnitService from "../services/units/createUnit.service";
 import deleteUnitService from "../services/units/deleteUnit.service";
+import listAllEntitiesService from "../services/units/listUnits.service";
 import updateUnitService from "../services/units/updateUnit.service";
 
 export class UnitsController {
@@ -17,6 +18,12 @@ export class UnitsController {
     });
 
     return res.status(201).json(newUnit);
+  }
+
+  static async index(req: Request, res: Response) {
+    const units = await listAllEntitiesService();
+
+    return res.status(200).json(units);
   }
 
   static async update(req: Request, res: Response) {
@@ -38,6 +45,6 @@ export class UnitsController {
 
     const deletedUnit = await deleteUnitService(unit_id);
 
-    return res.status(200).json({ message: "Unit deleted." });
+    return res.status(204)
   }
 }

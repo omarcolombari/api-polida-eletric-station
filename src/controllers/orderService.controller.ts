@@ -40,7 +40,7 @@ export default class OrderServiceController {
     const updateOrder = new UpdateOrderService();
     const updatedOrder = await updateOrder.execute({ id, reschedule, status });
 
-    return res.status(201).json(updatedOrder);
+    return res.status(200).json(updatedOrder);
   }
 
   static async showPerUserId(req: Request, res: Response) {

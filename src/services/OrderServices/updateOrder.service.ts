@@ -1,10 +1,10 @@
 import { AppDataSource } from "../../data-source";
 import ServiceOrder from "../../entities/serviceOrder.entity";
 import { AppError } from "../../errors/index";
-import { IService } from "../../interfaces/serviceOrder";
+import { IServiceUpdate } from "../../interfaces/serviceOrder";
 
 export default class UpdateOrderService {
-  async execute({ id, status, reschedule }: IService): Promise<ServiceOrder> {
+  async execute({ id, status, reschedule }: IServiceUpdate): Promise<ServiceOrder> {
     const serviceOrderRepository = AppDataSource.getRepository(ServiceOrder);
 
     const order = await serviceOrderRepository.findOne({

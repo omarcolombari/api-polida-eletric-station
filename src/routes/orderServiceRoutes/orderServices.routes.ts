@@ -18,8 +18,8 @@ export default () => {
     OrderServiceController.store
   );
   orderRouter.get("/", OrderServiceController.index);
-  orderRouter.get("/:id", OrderServiceController.show);
   orderRouter.get("/me", OrderServiceController.showPerUserId);
+  orderRouter.get("/:id", OrderServiceController.show);
 
   orderRouter.patch(
     "/:id",

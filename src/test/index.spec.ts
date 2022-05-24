@@ -52,8 +52,8 @@ describe("Integration", () => {
 
   beforeAll(async () => {
     await AppDataSource.initialize()
-      .then(res => (connection = res))
-      .catch(err => {
+      .then((res) => (connection = res))
+      .catch((err) => {
         console.error("Error during Data Source initialization", err);
       });
   });
@@ -136,7 +136,7 @@ describe("Integration", () => {
       .patch(`/users/${userId}`)
       .set("Authorization", "Bearer " + token)
       .send({
-        "contact": "test update",
+        contact: "test update",
       });
 
     expect(response.status).toBe(200);
@@ -262,12 +262,22 @@ describe("Integration", () => {
     serviceOrder.unitId = response.body.id;
   });
 
+  test("Should all units", async () => {
+    const response = await request(app)
+      .get(`/units`)
+      .set("Authorization", "Bearer " + token);
+    
+    expect(response.status).toBe(200);
+
+    expect(response.body).toHaveProperty("map")
+  });
+
   test("Should update one unit", async () => {
     const response = await request(app)
       .patch(`/units/${unitId}`)
       .set("Authorization", "Bearer " + token)
       .send({
-        "street": "test update",
+        street: "test update",
       });
 
     expect(response.status).toBe(200);
@@ -335,7 +345,34 @@ describe("Integration", () => {
       })
     );
   });
+
+  test("Should list service orders from user", async () => {
+    const response = await request(app)
+      .get(`/orders/me`)
+      .set("Authorization", "Bearer " + token);
+
+    expect(response.status).toBe(200);
+
+    expect(response.body).toHaveProperty("map");
+  });
+
+  test("Should update one order service", async () => {
+    const response = await request(app)
+      .patch(`/orders/${serviceOrderId}`)
+      .set("Authorization", "Bearer " + token)
+      .send({
+        reschedule: "Test edit",
+      });
+    expect(response.status).toBe(200);
+
+    expect(response.body.reschedule).toEqual("Test edit");
+  });
+
+  test("Should delete an client", async () => {
+    const response = await request(app)
+      .delete(`/orders/${clientId}`)
+      .set("Authorization", "Bearer " + token);
+  });
+
 });
 
-// delete tests
-// console.log(JSON.stringify(response.body));

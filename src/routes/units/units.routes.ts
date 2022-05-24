@@ -10,7 +10,7 @@ const router = Router();
 export const unitRoutes = () => {
   router.use(ensureAuthMiddleware);
   router.use(verifyAdminMiddleware);
-
+  router.get("/", UnitsController.index);
   router.post(
     "/",
     expressYupMiddleware({ schemaValidator: createUnitSchema }),

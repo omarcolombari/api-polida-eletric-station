@@ -4,10 +4,7 @@ const updateOrderServiceSchema = {
   schema: {
     body: {
       yupSchema: yup.object().shape({
-        status: yup
-          .string()
-          .matches(/(Aberto|Fechado)/, "Invalid status")
-          .required(),
+        status: yup.string().matches(/(Aberto|Fechado)/, "Invalid status"),
       }),
       validateOptions: {
         abortEarly: false,

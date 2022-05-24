@@ -16,3 +16,9 @@ export interface IService {
   status: StatusType;
   reschedule?: string;
 }
+
+export interface IServiceUpdate {
+  id: string;
+  status?: StatusType;
+  reschedule?: string;
+}
