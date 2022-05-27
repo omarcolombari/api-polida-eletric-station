@@ -16,35 +16,38 @@ export default class ServiceOrder {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
-  @ManyToOne((type) => User, (user) => user.service_order)
+  @ManyToOne(type => User, user => user.service_order)
   @JoinColumn()
   user: User;
 
-  @ManyToOne((type) => ServiceType, (serviceType) => serviceType.service_order)
+  @ManyToOne(type => ServiceType, serviceType => serviceType.service_order)
   @JoinColumn()
   service_type: ServiceType;
 
-  @ManyToOne((type) => Unit, (unit) => unit.service_order, {
+  @ManyToOne(type => Unit, unit => unit.service_order, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
+    eager: true,
   })
   @JoinColumn()
   unit: Unit;
 
-  @Column()
+  @Column({
+    default: "Aberto",
+  })
   status: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, default: null })
   reschedule: string;
 
   @Column()
-  unitId: string
+  unitId: string;
 
   @Column()
-  serviceTypeId: string
+  serviceTypeId: string;
 
   @Column()
-  userId: string
+  userId: string;
 
   @CreateDateColumn()
   created_at: Date;

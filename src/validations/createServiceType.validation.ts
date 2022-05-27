@@ -4,7 +4,7 @@ const createServiceTypeSchema = {
   schema: {
     body: {
       yupSchema: yup.object().shape({
-        type: yup.string().required("Type is required"),
+        name: yup.string().required("Name is required"),
         price: yup.number().required("Price is required"),
       }),
       validateOptions: {

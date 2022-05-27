@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import {
   Entity,
   Column,
@@ -20,13 +21,14 @@ export default class User {
   @Column()
   name: string;
 
+  @Exclude()
   @Column()
   password: string;
 
   @Column()
   contact: string;
 
-  @Column()
+  @Column({ default: false })
   isAdmin: boolean;
 
   @OneToMany((type) => ServiceOrder, (serviceOrder) => serviceOrder.user, {

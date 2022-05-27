@@ -41,7 +41,6 @@ export default class Unit {
   client: Client;
 
   @OneToMany((type) => ServiceOrder, (serviceOrder) => serviceOrder.unit, {
-    eager: true,
     onUpdate: "CASCADE",
     onDelete: "CASCADE",
   })

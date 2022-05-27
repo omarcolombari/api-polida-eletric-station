@@ -3,14 +3,7 @@ import ServiceOrder from "../../entities/serviceOrder.entity";
 import Unit from "../../entities/unit.entity";
 import User from "../../entities/user.entity";
 import { AppError } from "../../errors/index";
-
-interface IServiceOrder {
-  userId: string;
-  serviceTypeId: string;
-  unitId: string;
-  status: string;
-  reschedule: string;
-}
+import { IServiceOrder } from "../../interfaces/serviceOrder";
 
 export default class CreateOrderService {
   async execute(data: IServiceOrder): Promise<ServiceOrder> {

@@ -3,8 +3,6 @@ import ServiceTypeController from "../../controllers/serviceType.controller";
 import ensureAuthMiddleware from "../../middlewares/ensureAuth.middleware";
 import verifyAdminMiddleware from "../../middlewares/verifyAdmin.middleware";
 import { expressYupMiddleware } from "express-yup-middleware";
-// import middleware
-
 import createServiceTypeSchema from "../../validations/createServiceType.validation";
 
 const routes = Router();

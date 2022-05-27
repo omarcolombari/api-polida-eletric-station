@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
 
 import authUserService from "../services/sessions/authUser.service";
@@ -21,7 +22,7 @@ export default class UserController {
       isAdmin,
     });
 
-    return res.status(201).json(user);
+    return res.status(201).json(instanceToPlain(user));
   }
 
   static async session(req: Request, res: Response) {
@@ -39,7 +40,7 @@ export default class UserController {
 
     const users = await listUsers.execute();
 
-    return res.status(200).json(users);
+    return res.status(200).json(instanceToPlain(users));
   }
 
   static async show(req: Request, res: Response) {
@@ -50,30 +51,30 @@ export default class UserController {
 
     const user = await showUser.execute({ user_id, id, isAdmin });
 
-    return res.status(200).json(user);
+    return res.status(200).json(instanceToPlain(user));
   }
 
   static async update(req: Request, res: Response) {
     const { password, contact } = req.body;
-    const { id } = req.user;
+    const { user_id } = req.params;
 
     const updateUser = new UpdateUserService();
 
     const user = await updateUser.execute({
-      id,
+      id: user_id,
       password,
       contact,
     });
 
-    return res.status(200).json(user);
+    return res.status(200).json(instanceToPlain(user));
   }
 
   static async delete(req: Request, res: Response) {
-    const { id } = req.user;
+    const { user_id } = req.params;
 
     const deleteUser = new DeleteUserService();
 
-    const userDeleted = await deleteUser.execute({ id });
+    const userDeleted = await deleteUser.execute({ id: user_id });
 
     return res.status(200).json({ message: "User deleted successfully." });
   }
