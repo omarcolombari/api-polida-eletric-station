@@ -66,7 +66,7 @@ export default class UserController {
       contact,
     });
 
-    return res.status(200).json(user);
+    return res.status(200).json(instanceToPlain(user));
   }
 
   static async delete(req: Request, res: Response) {

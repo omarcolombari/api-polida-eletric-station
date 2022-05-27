@@ -6,7 +6,7 @@ export default class ShowOrderPerIdService {
   async execute(userId: string): Promise<ServiceOrder[]> {
     const serviceOrderRepository = AppDataSource.getRepository(ServiceOrder);
     const orders = await serviceOrderRepository.find({
-      where: { id: userId },
+      where: { userId },
     });
 
     if (!orders)
