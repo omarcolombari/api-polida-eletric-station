@@ -18,7 +18,9 @@ O token de autenticação é fornecido como resposta na rota de login e deve ser
 Para esta aplicação existem dois tipos de usuário: Administrador e técnico.
 O login do técnico tem acesso somente as rotas pertinentes aquele técnico, como as ordens de serviço que lhe foram atribuidas. Somente os administradores tem acesso a todas as rotas.
 
----
+## ERROS
+
+## Em caso de problemas na requisição, todas as rotas retornam mensagens de erro especificando o problema, como token inválido, permissões de administrador insuficientes ou campos faltando/inválidos na requisição.
 
 ## ENDPOINTS
 
