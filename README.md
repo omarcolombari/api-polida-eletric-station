@@ -173,7 +173,7 @@ Alteração da <strong>senha</strong> de um usuário
 
 ### `/users/:id`
 
-#### <strong>POST</strong>
+#### <strong>DELETE</strong>
 
 Deletar um usuario
 
@@ -347,7 +347,7 @@ Sem corpo de resposta.
 
 ### `/units`
 
-#### POST
+#### <strong>POST</strong>
 
 Criação de uma unidade/endereço de cliente. O id do cliente dono da unidade deve ser enviado no corpo da requisição.
 
@@ -386,7 +386,7 @@ Criação de uma unidade/endereço de cliente. O id do cliente dono da unidade d
 
 ### `/units`
 
-#### PATCH
+#### <strong>PATCH</strong>
 
 Atualiza todos os campos da unidade especificada, <strong>exceto</strong> o cliente dono da unidade.
 
@@ -424,7 +424,7 @@ Atualiza todos os campos da unidade especificada, <strong>exceto</strong> o clie
 
 ### `/units`
 
-#### DELETE
+#### <strong>DELETE</strong>
 
 Deleta uma unidade
 
