@@ -2,6 +2,8 @@
 
 Este é o backend da aplicação do grupo “POLIDA” para capstone do módulo 4 do curso fullstack da Kenzie Academy Brasil! O objetivo dessa aplicação é realizar o gerenciamento de ordens de serviço para uma empresa de instalação de carregadores de carros elétricos. Além de desenvolvimento de hard skills e soft skills.
 
+<h2 text-align="center">Url base da API: https://api-polida-eletric-station.herokuapp.com/</h2>
+
 ## AUTENTICAÇÃO
 
 Todas as rotas exigem autenticação, exceto as rotas de criação de usuário e login.
